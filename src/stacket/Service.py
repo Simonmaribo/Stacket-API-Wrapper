@@ -90,6 +90,9 @@ class Service:
     def getSettings(self):
         return self.props["settings"]
 
+    def console(self, command):
+        return post(self.getId(), "control", {"state": "console", "command": command}, self.token)
+
     def powerOn(self):
         return control(self.getId(), "start", self.token)
 
