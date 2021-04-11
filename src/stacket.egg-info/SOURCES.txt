@@ -1,0 +1,13 @@
+LICENSE
+pyproject.toml
+setup.py
+src/stacket/Service.py
+src/stacket/StacketClient.py
+src/stacket/__init__.py
+src/stacket/config.py
+src/stacket/errors.py
+src/stacket.egg-info/PKG-INFO
+src/stacket.egg-info/SOURCES.txt
+src/stacket.egg-info/dependency_links.txt
+src/stacket.egg-info/requires.txt
+src/stacket.egg-info/top_level.txt
