@@ -1,3 +1,4 @@
+![version](https://img.shields.io/github/v/release/simonmaribo/Stacket-API-Wrapper?label=Version&style=plastic) 
 # Stacket API Wrapper : Python
 Build powerful systems integrating your services together like never before.
 

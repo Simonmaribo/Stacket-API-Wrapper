@@ -3,7 +3,7 @@ with open("readme.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 setuptools.setup(
     name="stacket",
-    version="0.1.1",
+    version="0.1.2",
     description="Stacket API Wrapper",
     author="SIMON#1386",
     license="MIT",

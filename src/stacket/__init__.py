@@ -16,4 +16,4 @@ __author__ = 'SIMON#1386'
 __github__ = "https://github.com/simonmaribo"
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2021-present SIMON#1386'
-__version__ = '0.1.1'
+__version__ = '0.1.2'
