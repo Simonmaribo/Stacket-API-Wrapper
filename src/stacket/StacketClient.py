@@ -64,13 +64,16 @@ class StacketClient:
         Possible errors:
             {"error":"Service type supported on this node."}
     """
+
     def getVersions(self, node: str = None, type: str = None):
-        result = get(f"{base}/node/{node if node else 'fn10'}/{type if type else 'Minecraft'}/versions", headers={"Authorization": self.__token__})
+        result = get(f"{base}/node/{node if node else 'fn10'}/{type if type else 'Minecraft'}/versions",
+                     headers={"Authorization": self.__token__})
         Json = result.json()
         return Json
 
     def getPackage(self, node: str = None, type: str = None):
-        result = get(f"{base}/node/{node if node else 'fn10'}/{type if type else 'Minecraft'}/packages", headers={"Authorization": self.__token__})
+        result = get(f"{base}/node/{node if node else 'fn10'}/{type if type else 'Minecraft'}/packages",
+                     headers={"Authorization": self.__token__})
         Json = result.json()
         return Json
 
@@ -88,6 +91,7 @@ class StacketClient:
         for domain in Json:
             domains.append(Domain(domain["_id"], self.__token__, domain))
         return domains
+
     def getDomain(self, id):
         result = get(f"https://domains_devapi.stacket.net/{id}", headers={"Authorization": self.__token__})
         Json = result.json()
