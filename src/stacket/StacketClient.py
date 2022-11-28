@@ -17,24 +17,24 @@ class StacketClient:
             return True
         return False
 
-    def getServices(self):
+    def get_services(self):
         result = get(f"{base}/services/", headers={"Authorization": self.__token__})
         Json = result.json()
         if not 200 <= result.status_code < 300:
             raise ClientException("Error: " + Json["error"])
         services = []
         for service in Json:
-            services.append(Service(service["service"], self.__token__, ))
+            services.append(Service(service, self.__token__, ))
         return services
 
-    def getService(self, id):
+    def get_service(self, id):
         result = get(f"{base}/services/{id}", headers={"Authorization": self.__token__})
         Json = result.json()
         if not 200 <= result.status_code < 300:
             raise ClientException("Error: " + Json["error"])
         return Service(Json["service"], self.__token__, Json["access"])
 
-    def createService(self, settings):
+    def create_service(self, settings):
         result = post(f"{base}/services/", settings, headers={"Authorization": self.__token__})
         Json = result.json()
         if not 200 <= result.status_code < 300:
@@ -65,24 +65,27 @@ class StacketClient:
             {"error":"Service type supported on this node."}
     """
 
-    def getVersions(self, node: str = None, type: str = None):
+    def get_versions(self, node: str = None, type: str = None):
         result = get(f"{base}/node/{node if node else 'fn10'}/{type if type else 'Minecraft'}/versions",
                      headers={"Authorization": self.__token__})
         Json = result.json()
         return Json
 
-    def getPackage(self, node: str = None, type: str = None):
+    def get_package(self, node: str = None, type: str = None):
         result = get(f"{base}/node/{node if node else 'fn10'}/{type if type else 'Minecraft'}/packages",
                      headers={"Authorization": self.__token__})
         Json = result.json()
         return Json
 
-    def getNodeInfo(self):
-        result = get(f"{base}/nodeInfo", headers={"Authorization": self.__token__})
+    def get_node_info(self):
+        result = get(f"https://services_devapi.stacket.net/nodeInfo", headers={"Authorization": self.__token__})
         Json = result.json()
         return Json
 
-    def getDomains(self):
+    def get_nodes(self):
+        return self.get_node_info()
+
+    def get_domains(self):
         result = get(f"https://domains_devapi.stacket.net/", headers={"Authorization": self.__token__})
         Json = result.json()
         if not 200 <= result.status_code < 300:
@@ -92,7 +95,7 @@ class StacketClient:
             domains.append(Domain(domain["_id"], self.__token__, domain))
         return domains
 
-    def getDomain(self, id):
+    def get_domain(self, id):
         result = get(f"https://domains_devapi.stacket.net/{id}", headers={"Authorization": self.__token__})
         Json = result.json()
         if not 200 <= result.status_code < 300:

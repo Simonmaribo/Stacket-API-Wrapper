@@ -33,61 +33,61 @@ class Service:
         self.access = access
         self.status = props["status"]
 
-    def getId(self):
+    def get_id(self):
         return self.props["_id"]
 
-    def getAccess(self):
+    def get_access(self):
         if self.access is not None:
             return self.access
         data = get(self.getId(), "", self.token)
         self.access = data["access"]
         return self.access
 
-    def getName(self):
+    def get_name(self):
         return self.props["name"]
 
-    def getType(self):
+    def get_type(self):
         return self.props["type"]
 
-    def getVersion(self):
+    def get_version(self):
         return self.props["version"]
 
-    def getAllocations(self):
+    def get_allocations(self):
         return self.props["allocations"]
 
-    def getNetworks(self):
+    def get_networks(self):
         return self.props["networks"]
 
-    def getNode(self):
+    def get_node(self):
         return self.props["node"]
 
-    def getStorage(self):
+    def get_storage(self):
         return self.props["storage"]
 
-    def getPackage(self):
+    def get_package(self):
         return self.props["package"]
 
-    def getStatus(self):
+    def get_status(self):
         data = get(self.getId(), "", self.token)
-        self.status = data["service"]["access"]
+        self.status = data['service']["status"]
         return self.status
 
-    def getPayment(self):
+    def get_payment(self):
         return self.props["payment"]
 
-    def getSubusers(self):
+    def get_subusers(self):
         return self.props["subusers"]
 
-    def getEnvironment(self):
+    def get_environment(self):
         return self.props["environment"]
 
-    def getOwner(self):
+    def get_owner(self):
         return self.props["owner"]
 
-    def getDisk(self):
+    def get_disks(self):
         return self.props["disks"]
 
-    def getSettings(self):
+    def get_settings(self):
         return self.props["settings"]
 
     def console(self, command):
@@ -114,19 +114,19 @@ class Service:
     def update(self):
         return control(self.getId(), "update", self.token)
 
-    def npminstall(self):
+    def npm_install(self):
         return control(self.getId(), "npminstall", self.token)
 
-    def getUsage(self):
+    def get_usage(self):
         return get(self.getId(), "usage", self.token)
 
-    def getIp(self):
+    def get_ip(self):
         return get(self.getId(), "ip", self.token)
 
-    def getActions(self):
+    def get_actions(self):
         return get(self.getId(), "actions", self.token)
 
-    def getAction(self, id):
+    def get_action(self, id):
         return get(self.getId(), f"actions/{id}", self.token)
 
     def delete(self):
@@ -135,27 +135,27 @@ class Service:
             raise ServiceException("Error: " + result.json()["error"])
         return result.json()
 
-    def setName(self, name):
+    def set_name(self, name):
         return post(self.getId(), "", {"name": name}, self.token)
 
-    def setVersion(self, platform, version):
+    def set_version(self, platform, version):
         return post(self.getId(), "", {"version": {"platform": platform, "version": version}}, self.token)
 
-    def setPackage(self, package):
+    def set_package(self, package):
         return post(self.getId(), "", {"package": package}, self.token)
 
-    def setAutoRestart(self, enabled):
+    def set_auto_restart(self, enabled):
         return post(self.getId(), "", {"settings": {"autorestart": enabled}}, self.token)
 
-    def setFirmware(self, firmware):
+    def set_firmware(self, firmware):
         return post(self.getId(), "", {"settings": {"firmware": firmware}}, self.token)
 
-    def setEnvironment(self, key, value):
+    def set_environment(self, key, value):
         return post(self.getId(), "", {"environment": {"key": key, "value": value}}, self.token)
 
-    def getFTP(self):
+    def get_ftps(self):
         return get(self.getId(), "ftp", self.token)
 
-    def newFTP(self, name, password, path):
+    def new_ftp(self, name, password, path):
         return post(self.getId(), "ftp", {"name": name, "password": password, "path": path}, self.token)
 

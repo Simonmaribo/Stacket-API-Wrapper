@@ -22,7 +22,7 @@ else:
     print("Authenticated with Stacket")
 
 
-client.createService({
+client.create_service({
     "type": "minecraft",
     "node": "aad10",
     "package": "pkg1",
@@ -30,6 +30,6 @@ client.createService({
     "version": "1.8.8"
 })
 
-for service in client.getServices():
-    print(f"{service.getId()} : {service.getStatus()}")
+for service in client.get_services():
+    print(f"{service.get_id()} : {service.get_status()}")
 ```

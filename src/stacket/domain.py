@@ -30,35 +30,30 @@ class Domain:
         self.token = token
         self.props = props
 
-    def addProxy(self, service: str, subdomain: str):
+    def add_proxy(self, service: str, subdomain: str):
         result = post(self.id, "proxy", {"subdomain": subdomain, "service": service}, self.token)
         Json = result.json()
         return Json
 
-    def deleteProxy(self, subdomain: str):
+    def delete_proxy(self, subdomain: str):
         result = _delete(self.id, "proxy" + subdomain, self.token)
         Json = result.json()
         return Json
 
-    def getDomainInfo(self):
-        result = get(self.id, "", self.token)
-        Json = result.json()
-        return Json
-
-    def getDomain(self):
+    def get_domain(self):
         return self.props["domain"]
 
-    def getDomainKey(self):
+    def get_domain_key(self):
         return self.props["domainKey"]
 
-    def isVerified(self):
+    def is_verified(self):
         return bool(self.props["verified"])
 
-    def isRegistered(self):
+    def is_registered(self):
         return bool(self.props["registered"])
 
-    def getSubdomains(self):
+    def get_subdomains(self):
         return self.props["proxypass"]
 
-    def getOwner(self):
+    def get_owner(self):
         return self.props["owner"]
